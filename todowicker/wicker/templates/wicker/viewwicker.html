@@ -1,0 +1,39 @@
+{% extends 'wicker/theme.html'%}
+{% block content %}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h5>Editwicker</h5>
+      <h2>{{error}}</h2>
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="https://www.freepatternsarea.com/wp-content/uploads/template-files/vector/vy003.svg" id="icon" width="100px" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+     
+      <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %} 
+        {{form.as_p}}
+       <input type="submit" class="fadeIn fourth" value="save">
+     </form>
+
+     <form method="POST" action="{% url 'complete' wicker.id %}">
+        {% csrf_token %}
+        <input type="submit" class="fadeIn fourth" value="complete">
+    </form>
+   
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <form method="POST" action="{% url 'delete' wicker.id %}">
+            {% csrf_token %}
+            <input type="submit" class="fadeIn fourth" value="delete">
+        
+        </form>
+      </div>
+  
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'wicker/theme.html'%}
+{% block content %}
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
+            <ul class="event-list">
+                {% for wicker in wickers %}
+                
+                <li>
+                    
+                    <time datetime="2014-07-20">
+                        <span class="day">{{wicker.date_completed|date:'d'}}</span>
+                        <span class="month">{{wicker.date_completed|date:'M'}}</span>
+                        <span class="year">{{wicker.date_completed|date:'y'}}</span>
+                        <span class="time">ALL DAY</span>
+                    </time>
+                   
+                    
+                    <div class="info">
+                        <h2 class="title"> {% if wicker.importance %}<h2 class=" title text-danger">{% endif %}{{wicker.title}}{% if wicker.importance %}</b>{% endif %}</h2>
+                        <p class="desc"> {% if wicker.memo%} - {{wicker.memo}}{% endif %}</p>
+                        <p class="desc text-info">Assigned to Mr. {{wicker.user}}</p>
+                    </div>
+                    <div class="social">
+                        <ul>
+                            <li class="facebook" style="width:33%;"><a href="{% url 'viewwicker' wicker.id %}"><span class="fa fa-arrow-right"></span></a></li>
+                          
+                        </ul>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
